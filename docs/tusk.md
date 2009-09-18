@@ -31,7 +31,16 @@ packages are supported:
 
 e.g.
 
-  tusk package -f --flavor browser
+    tusk package -f --flavor browser
+
+
+Development
+===========
+
+Unit Tests
+----------
+
+    narwhal tests/tusk/all-tests.js
 
 
 
