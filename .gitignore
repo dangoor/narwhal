@@ -5,3 +5,4 @@ narwhal.conf
 zips
 .DS_Store
 ._*
+/build

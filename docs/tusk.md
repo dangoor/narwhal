@@ -11,9 +11,28 @@ Narwhal installation. `tusk` requires Narwhal to run.
 Status
 ------
 
-`tusk` is a work in progress although already functional and capable in
+`tusk` is a work in progress although already functional and capable of
 handeling all your basic needs. If you have any questions or run into
 any problems you can seek help in the [Mailing List](http://groups.google.com/group/narwhaljs).
+
+
+Commands
+========
+
+package
+-------
+
+    tusk package -h
+
+Bundle all modules for all installed packages into a directory. Different `flavors` of
+packages are supported:
+
+  * `browser` - Compiles modules ready for use on the browser engine
+
+e.g.
+
+  tusk package -f --flavor browser
+
 
 
 Work in Progress
