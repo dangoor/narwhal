@@ -16,8 +16,54 @@ handeling all your basic needs. If you have any questions or run into
 any problems you can seek help in the [Mailing List](http://groups.google.com/group/narwhaljs).
 
 
+Environmental Impact
+--------------------
+
+Like many other tools `tusk` needs to store some data on the system to manage
+it's affirs. This data includes configuration, cache and backup files.
+
+System(Planet) wide: `~/.tusk` ~
+
+    tusk.json   // Tusk configuration
+
+Sea specific: `<sea>/.tusk` ~
+
+    tusk.json
+
+
+
 Commands
 ========
+
+config
+------
+
+    tusk show-config
+
+The planet-wide and sea-specific (if active) tusk configurations.
+
+
+
+sea
+---
+
+    tusk create-sea <path>
+    
+Create a new sea.
+
+    tusk show-sea
+
+Show information about the currently active sea.
+
+    tusk list-sea
+    
+List all known seas.
+
+    tusk add-sea <path>
+    
+Add an existing sea to the `~/.tusk/tusk.json` config file.
+
+
 
 package
 -------
@@ -32,6 +78,7 @@ packages are supported:
 e.g.
 
     tusk package -f --flavor browser
+
 
 
 Development

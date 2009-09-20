@@ -6,3 +6,4 @@ zips
 .DS_Store
 ._*
 /build
+/.tmp
