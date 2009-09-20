@@ -24,11 +24,13 @@ it's affirs. This data includes configuration, cache and backup files.
 
 System(Planet) wide: `~/.tusk` ~
 
-    tusk.json   // Tusk configuration
+    tusk.json       // Tusk configuration
+    *.catalog.json  // Named catalogs
 
 Sea specific: `<sea>/.tusk` ~
 
     tusk.json
+    catalog.json    // The sea catalog
 
 
 
@@ -67,6 +69,21 @@ Add an existing sea to the `~/.tusk/tusk.json` config file.
 
 package
 -------
+
+    tusk add-package --catalog <catalog> <uri>
+    
+Add the package at `<uri>` to the planet catalog named `<catalog>`. If --catalog
+is omitted the package will be added to the sea catalog. The following uri's are
+supported:
+
+  * tusk add-package 
+  * tusk add-package ./path/to/file
+  * tusk add-package /path/to/file
+  * tusk add-package file://
+  * tusk add-package file://./path/to/file
+  * tusk add-package file:///path/to/file
+  * tusk app-package http://domain.com/path/package.zip
+
 
     tusk package -h
 
