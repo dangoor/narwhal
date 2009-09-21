@@ -20,14 +20,15 @@ Environmental Impact
 --------------------
 
 Like many other tools `tusk` needs to store some data on the system to manage
-it's affirs. This data includes configuration, cache and backup files.
+it's affairs. This data includes configuration, cache and backup files.
 
-System(Planet) wide: `~/.tusk` ~
+System(Planet) wide: `~/.tusk/` ~
 
+    cache/*.zip     // Package downloads (md5(url)+".zip")
     tusk.json       // Tusk configuration
     *.catalog.json  // Named catalogs
 
-Sea specific: `<sea>/.tusk` ~
+Sea specific: `<sea>/.tusk/` ~
 
     tusk.json
     catalog.json    // The sea catalog
@@ -72,7 +73,7 @@ package
 
     tusk add-package --catalog <catalog> <uri>
     
-Add the package at `<uri>` to the planet catalog named `<catalog>`. If --catalog
+Add the package at `<uri>` to the planet catalog named `<catalog>`. If `--catalog`
 is omitted the package will be added to the sea catalog. The following uri's are
 supported:
 
@@ -83,6 +84,9 @@ supported:
   * tusk add-package file://./path/to/file
   * tusk add-package file:///path/to/file
   * tusk app-package http://domain.com/path/package.zip
+
+If a package with the same name already exists in the catalog it will not be
+overwritten. You can force the new package to replace the old one with `-f`.
 
 
     tusk package -h
