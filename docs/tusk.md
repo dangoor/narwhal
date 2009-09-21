@@ -78,11 +78,11 @@ is omitted the package will be added to the sea catalog. The following uri's are
 supported:
 
   * tusk add-package 
-  * tusk add-package ./path/to/file
-  * tusk add-package /path/to/file
+  * tusk add-package ./path/to/package
+  * tusk add-package /path/to/package
   * tusk add-package file://
-  * tusk add-package file://./path/to/file
-  * tusk add-package file:///path/to/file
+  * tusk add-package file://./path/to/package
+  * tusk add-package file:///path/to/package
   * tusk app-package http://domain.com/path/package.zip
 
 If a package with the same name already exists in the catalog it will not be
