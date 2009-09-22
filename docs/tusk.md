@@ -54,6 +54,10 @@ sea
     
 Create a new sea.
 
+    tusk init-sea <path>
+    
+Initialize a sea for an existing package.
+
     tusk show-sea
 
 Show information about the currently active sea.
@@ -66,6 +70,27 @@ List all known seas.
     
 Add an existing sea to the `~/.tusk/tusk.json` config file.
 
+    tusk bundle-sea <type>
+
+Bundle all modules for all installed packages in the currently active sea into a directory.
+Different `<type>`'s of bundles are supported:
+
+  * `browser` - Compiles modules ready for use on the browser engine
+
+
+catalog
+-------
+
+    tusk add-catalog <uri>
+    
+Add the catalog at `<uri>`. The name of the catalog is derived from the `name` property
+in the catalog. The name must start with `localhost` or any valid top level domain with
+the rest of the name in dot format. This naming scheme can ensure unique names across
+all public catalogs.
+
+    tusk list-catalog
+    
+List all active catalogs.
 
 
 package
@@ -89,16 +114,15 @@ If a package with the same name already exists in the catalog it will not be
 overwritten. You can force the new package to replace the old one with `-f`.
 
 
-    tusk package -h
+    tusk link-package --catalog <catalog> <uri>
 
-Bundle all modules for all installed packages into a directory. Different `flavors` of
-packages are supported:
+Same as `tusk add-package` but it links to the package instead of coyping it. This
+is typically used during development. Only file system based `<uri>`'s are supported.
 
-  * `browser` - Compiles modules ready for use on the browser engine
 
-e.g.
+    tusk remove-package --catalog <catalog> <name>
 
-    tusk package -f --flavor browser
+Remove a package from a catalog.
 
 
 
