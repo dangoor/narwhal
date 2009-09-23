@@ -96,6 +96,16 @@ List all active catalogs.
 package
 -------
 
+    tusk install-package <uri>
+
+Download and install a package and all it's dependencies into the active sea. The packages
+will be added to the sea catalog and as dependencies of the sea.
+See `tusk add-package` for info on the `<uri>` except for:
+
+    tusk add-package <package>
+
+If no sea is active the package will be installed into the planet/narwhal.
+
     tusk add-package [--catalog <catalog>] <uri>
     
 Add the package at `<uri>` and all it's dependencies to the planet catalog named `<catalog>`.
@@ -133,7 +143,6 @@ List all installed and dependent packages of the sea.
     tusk create-package
 
 List all installed and dependent packages of the sea.
-
 
 
 Development
