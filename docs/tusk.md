@@ -86,7 +86,12 @@ catalog
 Add the catalog at `<uri>`. The name of the catalog is derived from the `name` property
 in the catalog. The name must start with `localhost` or any valid top level domain with
 the rest of the name in dot format. This naming scheme can ensure unique names across
-all public catalogs.
+all public catalogs. A valid `<uri>` is a file path or a URL beginnging with `file://`,
+`http://`, `tusk://`. The `tusk` url is of the follwing format:
+
+    tusk://<catalog>/<package>
+    
+Where `<catalog>` is the name of a planet catalog.
 
     tusk list-catalog
     
