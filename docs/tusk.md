@@ -83,15 +83,10 @@ catalog
 
     tusk add-catalog <uri>
     
-Add the catalog at `<uri>`. The name of the catalog is derived from the `name` property
-in the catalog. The name must start with `localhost` or any valid top level domain with
-the rest of the name in dot format. This naming scheme can ensure unique names across
-all public catalogs. A valid `<uri>` is a file path or a URL beginnging with `file://`,
-`http://`, `tusk://`. The `tusk` url is of the follwing format:
-
-    tusk://<catalog>/<package>
-    
-Where `<catalog>` is the name of a planet catalog.
+Add the catalog at `<uri>` which points to a `catalog.json` file. The name of the catalog
+is derived from the `name` property in the catalog. The name must start with `localhost`
+or any valid top level domain with the rest of the name in dot format. This naming scheme
+can ensure unique names across all public catalogs.
 
     tusk list-catalog
     
@@ -101,11 +96,11 @@ List all active catalogs.
 package
 -------
 
-    tusk add-package --catalog <catalog> <uri>
+    tusk add-package [--catalog <catalog>] <uri>
     
-Add the package at `<uri>` to the planet catalog named `<catalog>`. If `--catalog`
-is omitted the package will be added to the sea catalog. The following uri's are
-supported:
+Add the package at `<uri>` and all it's dependencies to the planet catalog named `<catalog>`.
+If `--catalog` is omitted the package will be added to the sea catalog and as a dependency to the
+sea. The following uri's are supported:
 
   * tusk add-package 
   * tusk add-package ./path/to/package
@@ -114,20 +109,30 @@ supported:
   * tusk add-package file://./path/to/package
   * tusk add-package file:///path/to/package
   * tusk app-package http://domain.com/path/package.zip
+  * tusk app-package tusk://<catalog>/<package>
+  
+`<catalog>` is the name of a planet catalog.
 
 If a package with the same name already exists in the catalog it will not be
 overwritten. You can force the new package to replace the old one with `-f`.
 
-
-    tusk link-package --catalog <catalog> <uri>
+    tusk link-package [--catalog <catalog>] <uri>
 
 Same as `tusk add-package` but it links to the package instead of coyping it. This
 is typically used during development. Only file system based `<uri>`'s are supported.
 
+    tusk remove-package [--catalog <catalog>] <name>
 
-    tusk remove-package --catalog <catalog> <name>
+Remove a package and all it's dependencies from a catalog. If `--catalog` is omitted the package
+will also be removed as a dependency of the sea. `--delete` will also delete the package source code.
 
-Remove a package from a catalog.
+    tusk list-package
+
+List all installed and dependent packages of the sea.
+
+    tusk create-package
+
+List all installed and dependent packages of the sea.
 
 
 
