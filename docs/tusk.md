@@ -66,7 +66,7 @@ Show information about the currently active sea.
     
 List all known seas.
 
-    tusk switch-sea [<number>|<name>]
+    tusk switch-sea [<number>|<name>|<path>]
     
 Switch to a given sea. This is the same as executing the sea's `bin/sea`.
 
