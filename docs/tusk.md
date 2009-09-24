@@ -70,8 +70,13 @@ List all known seas.
     
 Switch to a given sea. This is the same as executing the sea's `bin/sea`.
 
-    tusk sea add <path>
+    tusk sea validate
     
+Validate a sea to ensure it meets all requirements. You can use `--sea` to specify
+a sea other than the currently active one.
+
+    tusk sea add <path>
+        
 Add an existing sea to the `~/.tusk/tusk.json` config file.
 
     tusk sea bundle <type>
