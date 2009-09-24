@@ -66,6 +66,10 @@ Show information about the currently active sea.
     
 List all known seas.
 
+    tusk switch-sea [<number>|<name>]
+    
+Switch to a given sea. This is the same as executing the sea's `bin/sea`.
+
     tusk add-sea <path>
     
 Add an existing sea to the `~/.tusk/tusk.json` config file.
