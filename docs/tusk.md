@@ -50,31 +50,31 @@ The planet-wide and sea-specific (if active) tusk configurations.
 sea
 ---
 
-    tusk create-sea <path>
+    tusk sea create <path>
     
 Create a new sea.
 
-    tusk init-sea <path>
+    tusk sea init <path>
     
 Initialize a sea for an existing package.
 
-    tusk show-sea
+    tusk sea show
 
 Show information about the currently active sea.
 
-    tusk list-sea
+    tusk sea list
     
 List all known seas.
 
-    tusk switch-sea [<number>|<name>|<path>]
+    tusk sea switch [<number>|<name>|<path>]
     
 Switch to a given sea. This is the same as executing the sea's `bin/sea`.
 
-    tusk add-sea <path>
+    tusk sea add <path>
     
 Add an existing sea to the `~/.tusk/tusk.json` config file.
 
-    tusk bundle-sea <type>
+    tusk sea bundle <type>
 
 Bundle all modules for all installed packages in the currently active sea into a directory.
 Different `<type>`'s of bundles are supported:
@@ -85,14 +85,14 @@ Different `<type>`'s of bundles are supported:
 catalog
 -------
 
-    tusk add-catalog <uri>
+    tusk catalog add <uri>
     
 Add the catalog at `<uri>` which points to a `catalog.json` file. The name of the catalog
 is derived from the `name` property in the catalog. The name must start with `localhost`
 or any valid top level domain with the rest of the name in dot format. This naming scheme
 can ensure unique names across all public catalogs.
 
-    tusk list-catalog
+    tusk catalog list
     
 List all active catalogs.
 
@@ -100,51 +100,51 @@ List all active catalogs.
 package
 -------
 
-    tusk install-package <uri>
+    tusk package install <uri>
 
 Download and install a package and all it's dependencies into the active sea. The packages
 will be added to the sea catalog and as dependencies of the sea.
 See `tusk add-package` for info on the `<uri>` except for:
 
-    tusk add-package <package>
+    tusk package add <package>
 
 If no sea is active the package will be installed into the planet/narwhal.
 
-    tusk add-package [--catalog <catalog>] <uri>
+    tusk package add [--catalog <catalog>] <uri>
     
 Add the package at `<uri>` and all it's dependencies to the planet catalog named `<catalog>`.
 If `--catalog` is omitted the package will be added to the sea catalog and as a dependency to the
 sea. The following uri's are supported:
 
-  * tusk add-package 
-  * tusk add-package ./path/to/package
-  * tusk add-package /path/to/package
-  * tusk add-package file://
-  * tusk add-package file://./path/to/package
-  * tusk add-package file:///path/to/package
-  * tusk app-package http://domain.com/path/package.zip
-  * tusk app-package tusk://<catalog>/<package>
+  * tusk package add 
+  * tusk package add ./path/to/package
+  * tusk package add /path/to/package
+  * tusk package add file://
+  * tusk package add file://./path/to/package
+  * tusk package add file:///path/to/package
+  * tusk package app http://domain.com/path/package.zip
+  * tusk package app tusk://<catalog>/<package>
   
 `<catalog>` is the name of a planet catalog.
 
 If a package with the same name already exists in the catalog it will not be
 overwritten. You can force the new package to replace the old one with `-f`.
 
-    tusk link-package [--catalog <catalog>] <uri>
+    tusk package link [--catalog <catalog>] <uri>
 
-Same as `tusk add-package` but it links to the package instead of coyping it. This
+Same as `tusk package add` but it links to the package instead of coyping it. This
 is typically used during development. Only file system based `<uri>`'s are supported.
 
-    tusk remove-package [--catalog <catalog>] <name>
+    tusk package remove [--catalog <catalog>] <name>
 
 Remove a package and all it's dependencies from a catalog. If `--catalog` is omitted the package
 will also be removed as a dependency of the sea. `--delete` will also delete the package source code.
 
-    tusk list-package
+    tusk package list
 
 List all installed and dependent packages of the sea.
 
-    tusk create-package
+    tusk package create
 
 List all installed and dependent packages of the sea.
 
@@ -161,6 +161,8 @@ Unit Tests
 
 Work in Progress
 ----------------
+
+*NOTE: THE ACTUAL IMPLEMENTATION DIFFERES FROM THE OVERVIEW BELOW!*
 
 The following functionality is currently under development.
 
