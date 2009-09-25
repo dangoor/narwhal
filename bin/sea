@@ -26,6 +26,7 @@ if [ "$#" -lt 1 ]; then
     echo SEA="$SEA" >&2
     echo SEALVL="$SEALVL" >&2
 #    export PS1="\e[00;35mTUSK[\e[00;33m%%sea.name%%\e[00;35m]:\e[m "
+#    cd $PACKAGE_HOME
     "$SHELL"
 else
     "$SHELL" -c "$*"
