@@ -129,7 +129,7 @@ Download and install a package and all it's dependencies into the active sea. Th
 will be added to the sea catalog and as dependencies of the sea.
 See `tusk add-package` for info on the `<uri>` except for:
 
-    tusk package add <package>
+    tusk package install <package>
 
 If no sea is active the package will be installed into the planet/narwhal.
 
@@ -171,6 +171,10 @@ List all installed and dependent packages of the sea.
     tusk package create
 
 List all installed and dependent packages of the sea.
+
+    tusk package uninstall <name>
+
+Uninstall a package from the sea.
 
 
 Development
