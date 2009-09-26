@@ -137,9 +137,16 @@ if (system.args.length && !options.interactive && !options.main) {
     var parts = system.fs.split(program);
     for (var i = 0; i < parts.length; i++) {
         var path = system.fs.join.apply(null, parts.slice(0, i));
-        var packageJson = system.fs.join(path, 'package.json');
-        if (system.fs.isFile(packageJson))
-            system.prefixes.unshift(path);
+        
+        // stay within the sea if applicable. i.e. if a sea is active
+        // do not scan for packages outside of the sea
+        if(!system.env.SEA ||
+           path.substr(0,system.env.SEA.length+1)==system.env.SEA+"/") {
+        
+            var packageJson = system.fs.join(path, 'package.json');
+            if (system.fs.isFile(packageJson))
+                system.prefixes.unshift(path);
+        }
     }
 
     if (program.isDirectory()) {
