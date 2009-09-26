@@ -101,6 +101,14 @@ can ensure unique names across all public catalogs.
     
 List all active catalogs.
 
+    tusk catalog remove <name>
+    
+Remove a catalog.
+
+    tusk catalog update [<name>]
+
+Update one or all planet catalogs.
+
 
 package
 -------
@@ -139,6 +147,7 @@ overwritten. You can force the new package to replace the old one with `-f`.
 
 Same as `tusk package add` but it links to the package instead of coyping it. This
 is typically used during development. Only file system based `<uri>`'s are supported.
+Only the specified package is linked. All dependencies are ignored.
 
     tusk package remove [--catalog <catalog>] <name>
 

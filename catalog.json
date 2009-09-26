@@ -600,5 +600,10 @@
             "type": "zip",
             "location": "http://github.com/tlrobinson/json-rpc/zipball/master"
         }
-    }
+    },
+    "origin": {
+        "url": "http://github.com/tlrobinson/narwhal/raw/master/catalog.json",
+        "revision": ""
+    },
+    "revision": "783ACDC2E7CF45EA4901F624811F2ABF"
 }
