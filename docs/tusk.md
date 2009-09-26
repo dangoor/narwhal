@@ -25,12 +25,13 @@ it's affairs. This data includes configuration, cache and backup files.
 System(Planet) wide: `~/.tusk/` ~
 
     cache/*.zip     // Package downloads (md5(url)+".zip")
+    cache/*.json    // Catalog downloads (md5(url)+".json")
     tusk.json       // Tusk configuration
     *.catalog.json  // Named catalogs
 
-Sea specific: `<sea>/.tusk/` ~
+Sea specific: `<sea>/` ~
 
-    tusk.json
+    package.json    // The sea package manifest
     catalog.json    // The sea catalog
 
 
@@ -108,6 +109,15 @@ Remove a catalog.
     tusk catalog update [<name>]
 
 Update one or all planet catalogs.
+
+    tusk catalog packages --catalog <name>
+
+List all packages in given catalog. If `--catalog` is omitted the sea catalog is used.
+
+    tusk catalog packages --catalog <name> <overlay>
+
+Add the catalog with name `<overlay>` as an overlay to `--catalog'. All package searches
+in the catalog will first check the overlay catalog.
 
 
 package
