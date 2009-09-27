@@ -176,6 +176,18 @@ List all installed and dependent packages of the sea.
 
 Uninstall a package from the sea.
 
+    tusk package build <name>
+
+Build a package from the sea. Build target are defined in `package.json` with:
+
+    "build": {
+        "defaultTarget": "dev",
+        "targets": {
+            "dev": "build/dev",
+        }
+    }
+    
+
 
 Development
 ===========
