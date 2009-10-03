@@ -55,7 +55,7 @@ for (var name in system.fs) {
     }
 }
 system.fs = fs;
-
+system.enginePrefix = system.prefix + '/engines/' + system.engines[0];
 // construct the initial paths
 var paths = [];
 // XXX system.packagePrefixes deprecated in favor of system.prefixes
@@ -64,9 +64,9 @@ for (var i = 0; i < prefixes.length; i++) {
     var prefix = prefixes[i];
     for (var j = 0; j < system.engines.length; j++) {
         var engine = system.engines[j];
-        paths.push(prefixes[i] + '/engines/' + engine + '/lib');
+        paths.push(prefixes[i] + "/engines/" + engine + "/lib");
     }
-    paths.push(prefixes[i] + '/lib');
+    paths.push(prefixes[i] + "/lib");
 }
 
 // create the primary Loader and Sandbox:
@@ -99,9 +99,9 @@ global.require.force("system");
 // augment the path search array with those provided in
 //  environment variables
 paths.push([
-    system.env.JS_PATH || '',
-    system.env.NARWHAL_PATH || ''
-].join(':').split(':').filter(function (path) {
+    system.env.JS_PATH || "",
+    system.env.NARWHAL_PATH || ""
+].join(":").split(":").filter(function (path) {
     return !!path;
 }));
 
@@ -122,7 +122,7 @@ global.require.debug = options.verbose;
 // already loaded
 if (!wasVerbose && system.verbose) {
     Object.keys(modules).forEach(function (name) {
-        print('| ' + name);
+        print("| " + name);
     });
 }
 
@@ -141,19 +141,13 @@ if (system.args.length && !options.interactive && !options.main) {
         // stay within the sea if applicable. i.e. if a sea is active
         // do not scan for packages outside of the sea
         if(!system.env.SEA ||
-           path.substr(0,system.env.SEA.length+1)==system.env.SEA+"/") {
-        
-            var packageJson = system.fs.join(path, 'package.json');
+            path.substr(0,system.env.SEA.length+1)==system.env.SEA+"/") {
+            var packageJson = system.fs.join(path, "package.json");
             if (system.fs.isFile(packageJson))
                 system.prefixes.unshift(path);
         }
     }
 
-    if (program.isDirectory()) {
-        if (!program.join('package.json').isFile())
-            throw new Error("Program directory does not contain a package.json");
-        system.prefixes.unshift(program);
-    }
 }
 
 // user package prefix
@@ -190,7 +184,7 @@ options.todo.forEach(function (item) {
         system.evalGlobal(value);
     } else if (action == "path") {
         var paths = packages.order.map(function (pkg) {
-            return pkg.directory.join('bin');
+            return pkg.directory.join("bin");
         }).filter(function (path) {
             return path.isDirectory();
         });
@@ -206,20 +200,20 @@ options.todo.forEach(function (item) {
 
 // load the program module
 if (options.interactive) {
-    require('narwhal/repl').repl();
+    require("narwhal/repl").repl();
 } else if (options.main) {
     require.main(options.main);
 } else if (program) {
     if (program.isDirectory()) {
-        require.main(packages.root.directory.resolve(packages.root.main || 'main').toString());
+        require.main(packages.root.directory.resolve(packages.root.main || "main").toString());
     } else {
         require.main(program.toString());
     }
 }
 
 // send an unload event if that module has been required
-if (require.loader.isLoaded('unload')) {
-    require('unload').send();
+if (require.loader.isLoaded("unload")) {
+    require("unload").send();
 }
 
 })
