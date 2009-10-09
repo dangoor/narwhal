@@ -108,7 +108,7 @@ Commands:
 
 Publishing:
 
-    rm -Rf dependencies
+    rm -Rf packages/dependencies
     cd ..
     zip -r test-package.zip ./test-package
 
