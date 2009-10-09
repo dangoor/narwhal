@@ -1,3 +1,0 @@
-#!/usr/bin/env narwhal
-
-require('locate').main(system.args);

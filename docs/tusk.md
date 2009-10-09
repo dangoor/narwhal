@@ -56,27 +56,63 @@ API tests:
 
     narwhal tests/tusk/api/all-tests.js
 
+Tutorial tests:
+
+    narwhal tests/tusk/tutorial/all-tests.js
+
 Workflow tests:
 
     narwhal tests/tusk/workflow/all-tests.js
 
 
-Use-Cases
+Tutorials
 =========
 
-Create and publish a package
-----------------------------
+(1) Create and publish a package
+--------------------------------
 
+Run the test:
+
+    narwhal tests/tusk/tutorial/create-publish-package.js
+
+Commands:
+
+    // Create a new sea/project
     tusk sea create --name test-package ./test-package
+
     tusk sea list                                       // Optional
+    
+    // Activate the sea/project
     tusk sea switch test-package
+
+    pwd                                                 // Optional
     tusk sea show                                       // Optional
     tusk sea validate                                   // Optional
+    tusk package list                                   // Optional
     
+    // Write some code
+    cp -Rf $NARWHAL_HOME/tests/tusk/tutorial/_files/create-publish-package/* ./
     
+    // Add a package as a dependency to the sea/project
+    tusk package add http://github.com/cadorn/domplate/zipball/master
 
+    tusk package list                                   // Optional
     
+    // Install all sea/project dependencies
+    tusk package install -f
     
+    tusk package list                                   // Optional
+    
+    // Test the package
+    narwhal tests/all-tests.js
+
+Publishing:
+
+    rm -Rf dependencies
+    cd ..
+    zip -r test-package.zip ./test-package
+
+**TODO: Info on how to initialize a sea from this package or use it as a dependency**
     
     
     

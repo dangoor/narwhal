@@ -3,6 +3,9 @@
 
 exports.testCommands = require("./commands/all-tests");
 
+
+// These two should probably not run by default
+//exports.testTutorials = require("./tutorial/all-tests");
 //exports.testWorkflows = require("./workflow/all-tests");
 
 
