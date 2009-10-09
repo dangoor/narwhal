@@ -19,7 +19,7 @@ exports.testDefault = function () {
                 "path": tusk.getNarwhalHomePath().join("").valueOf(),
                 "installed": true,
                 "dependency": true,
-                "locator": "Catalog(" + tusk.getNarwhalHomePath().join("catalog.json").valueOf() + ")[narwhal]@latest"                
+                "locator": "CATALOG(" + tusk.getNarwhalHomePath().join("catalog.json").valueOf() + ")[narwhal]@latest"                
             },
             {
                 "name": "readline",

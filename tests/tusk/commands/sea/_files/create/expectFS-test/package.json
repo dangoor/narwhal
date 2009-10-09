@@ -1,6 +1,6 @@
 {
+    "name": "sea1",
     "dependencies": [
         "narwhal"
-    ],
-    "name": "sea1"
+    ]
 }
