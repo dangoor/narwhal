@@ -1,7 +1,4 @@
 
-var assert = require("test/assert");
-var util = require("util");
-
 exports.testSeaCommands = require("./sea/all-tests");
 exports.testPackageCommands = require("./package/all-tests");
 

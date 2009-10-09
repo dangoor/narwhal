@@ -7,6 +7,10 @@ along with Narwhal by default and is your one-stop tool to manage your
 Narwhal installation. `tusk` requires Narwhal to run.
 
     tusk help
+    tusk sea help
+    tusk package help
+    tusk catalog help
+    tusk config help
     
 Status
 ------
@@ -36,8 +40,51 @@ Sea specific: `<sea>/` ~
 
 
 
+Contributing
+============
+
+Add unit tests for all commands/workflows/API's you use to ensure they will continue to work as tusk evolves.
+
+Unit Tests
+----------
+
+Command tests:
+
+    narwhal tests/tusk/commands/all-tests.js
+
+API tests:
+
+    narwhal tests/tusk/api/all-tests.js
+
+Workflow tests:
+
+    narwhal tests/tusk/workflow/all-tests.js
+
+
+Use-Cases
+=========
+
+Create and publish a package
+----------------------------
+
+    tusk sea create --name test-package ./test-package
+    tusk sea list                                       // Optional
+    tusk sea switch test-package
+    tusk sea show                                       // Optional
+    tusk sea validate                                   // Optional
+    
+    
+
+    
+    
+    
+    
+    
 Commands
 ========
+
+**NOTE: NOT ALL COMMANDS BELOW ARE WORKING AT THIS TIME. SEE 'tusk * help' FOR WORKING COMMANDS**
+
 
 config
 ------
@@ -187,140 +234,3 @@ Build a package from the sea. Build target are defined in `package.json` with:
         }
     }
     
-
-
-Development
-===========
-
-Unit Tests
-----------
-
-    narwhal tests/tusk/all-tests.js
-
-
-
-Work in Progress
-----------------
-
-*NOTE: THE ACTUAL IMPLEMENTATION DIFFERES FROM THE OVERVIEW BELOW!*
-
-The following functionality is currently under development.
-
-A catalog is essentially a mapping of package names to where the 
-packages can be found. This is similar to a cache as Kris Zyp mentioned.
-
-Say we have a published catalog:
-
-    http://repo.org/common/catalog.json ~
-    {
-      "packages": {
-        "kitchen": http://domain.com/path/to/package.zip
-        "kitchen.pantry": http://domain.com/path/to/package.zip
-      }
-    }
-
-And a package:
-
-    package.json ~
-    {
-      "name": "package.my",
-      "catalogs": {
-        "common": "http://repo.org/common/catalog.json"
-      },
-      "dependencies": {
-        "bakery": {
-          "catalog": "common",
-          "package": "kitchen"
-        },
-        "bakery.pantry": {
-          "catalog": "common",
-          "package": "kitchen.pantry"
-        }
-      }
-    }
-
-Which is published to:
-
-    http://domain.com/my/package.zip
-
-I can add this package to my "test" catalog with:
-
-    tusk package add --catalog test http://domain.com/my/package.zip
-
-Where --catalog is optional and defaults to the default sea catalog.
-
-To install this package I now do:
-
-    tusk install --catalog test package.my
-
-And use the dependencies via:
-
-    require('#bakery/table');
-    require('#bakery.pantry/cookies');
-
-
-If I want to override the "bakery.pantry" dependency I can define a new 
-package:
-
-    package.json ~
-    {
-      "name": "kitchen.pantry.my",
-    }
-
-And add it to my "common.override" catalog:
-
-    tusk package link --catalog common.override \
-    http://domain.com/my/package.zip
-
-Lastly I need to instruct tusk to use my "kitchen.pantry.my" package 
-instead of the original "kitchen.pantry":
-
-    package.local.json ~
-    {
-      "dependencies": {
-        "bakery.pantry": {
-          "catalog": "common.override",
-          "package": "kitchen.pantry.my"
-        }
-      }
-    }
-
-This last step may not be desirable as it requires more work when always 
-overriding the same packages. If the overridden package has the same 
-name "kitchen.pantry" instead of "kitchen.pantry.my" the package could 
-be installed with:
-
-    tusk install --catalog test,common.override package.my
-
-Or add the overriding package to the "test" catalog to begin with:
-
-    tusk package link --catalog test http://domain.com/my/package.zip
-
-(Assuming that dependencies are always looked up in the same catalog 
-that the package to be installed resides in before proceeding to 
-secondary catalogs defined in package.json)
-
-
-When you want to deploy your application you could run:
-
-    tusk catalog consolidate > catalog.json
-
-Which can then be used on your server with:
-
-    tusk catalog add catalog.json
-    tusk package install package.my
-
-If you have linked packages and not all your dependencies are published 
-you can run:
-
-    tusk --path /target/path consolidate
-
-Which will put all your dependencies into the --path that you can then 
-deploy along with the catalog.json file.
-
-
-When managing catalogs and packages this way it may be more practical to 
-have system wide catalogs for tusk that are not specific to a given sea. 
-We can default to a local/sea catalog if no catalog is specified with 
---catalog.
-

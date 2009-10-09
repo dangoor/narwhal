@@ -1,6 +1,8 @@
 
+//exports.testAPI = require("./api/all-tests");
 
 exports.testCommands = require("./commands/all-tests");
+
 //exports.testWorkflows = require("./workflow/all-tests");
 
 
